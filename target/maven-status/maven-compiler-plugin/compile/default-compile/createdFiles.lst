@@ -1,0 +1,11 @@
+com\jiekeliu\pojo\Stracture.class
+com\jiekeliu\SpringbootindexApplication.class
+com\jiekeliu\service\StractureService.class
+com\jiekeliu\service\CatalogueService.class
+com\jiekeliu\mapper\StractureMapper.class
+com\jiekeliu\controller\IndexData.class
+com\jiekeliu\controller\LoginPageData.class
+com\jiekeliu\service\StractureServiceImpl.class
+com\jiekeliu\pojo\Catalogue.class
+com\jiekeliu\mapper\CatalogueMapper.class
+com\jiekeliu\service\CatalogueServiceImpl.class
