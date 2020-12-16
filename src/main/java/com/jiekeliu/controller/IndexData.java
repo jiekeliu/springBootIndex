@@ -7,7 +7,6 @@ import com.jiekeliu.service.StractureServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,123 +27,239 @@ public class IndexData {
     @Autowired
     StractureServiceImpl stractureService;
 
-
-
     @GetMapping("/stracture")
     @CrossOrigin
-    public List<Stracture> getStacture(){
+    public Map getStacture(){
 
         List<Stracture> all_stacture = stractureService.getAll();
-        System.out.println(all_stacture);
 
-        return all_stacture;
+        HashMap<String, Object> responseInfo = new HashMap<>();
+        responseInfo.put("code",20000);
+        responseInfo.put("status","ok");
+        responseInfo.put("info","请求成功");
+        responseInfo.put("data",all_stacture);
+
+        System.out.println(responseInfo);
+
+        return responseInfo;
     }
 
-    @GetMapping("/stractureAdd")
-    public String addStacture(Stracture stracture){
+    @PostMapping("/stractureAdd")
+    @CrossOrigin(origins = "*")
+    public Map addStacture(Stracture stracture){
         System.out.println(stracture);
 
         int catalogueAdd_result = stractureService.addStracture(stracture);
         if (catalogueAdd_result == 1){
-              return "修改成功";
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","ok");
+            responseInfo.put("info","添加成功");
+            return responseInfo;
         }else {
-              return "未知错误";
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","添加错误");
+            return responseInfo;
         }
 
     }
 
-    @GetMapping("/stractureUp")
-    public String upStacture(Stracture stracture){
+    @PostMapping("/stractureUp")
+    @CrossOrigin(origins = "*")
+    public Map upStacture(Stracture stracture){
         System.out.println(stracture);
         if (stracture.getSid() == 0){
-            return "缺少序列号";
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","缺少序列号");
+            return responseInfo;
         }else {
-            int catalogueUp_result = stractureService.upStracture(stracture);
-            if (catalogueUp_result == 1){
-                return "修改成功";
+            int stractureUp_result = stractureService.upStracture(stracture);
+            if (stractureUp_result == 1){
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","ok");
+                responseInfo.put("info","修改成功");
+                return responseInfo;
             }else {
-                return "未知错误";
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","error");
+                responseInfo.put("info","修改错误");
+                return responseInfo;
             }
         }
     }
 
-    @GetMapping("/stractureDel")
-    public String delStacture(@RequestParam("sid") int sid){
+    @PostMapping("/stractureDel")
+    @CrossOrigin(origins = "*")
+    public Map delStacture(@RequestParam("sid") int sid){
         System.out.println(sid);
         if (sid == 0 ){
-            return "缺少序列号";
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","缺少序列号");
+            return responseInfo;
         }else {
             int del_res = stractureService.delStractureById(sid);
             if (del_res == 1){
-                return "删除成功";
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","ok");
+                responseInfo.put("info","删除成功");
+                return responseInfo;
             }else {
-                return "未知错误";
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","error");
+                responseInfo.put("info","删除错误");
+                return responseInfo;
             }
         }
     }
 
-    @GetMapping("/stractureOne")
-    public Stracture getStactureOne(@RequestParam("sid") int sid){
+    @PostMapping("/stractureOne")
+    @CrossOrigin(origins = "*")
+    public Map getStactureOne(@RequestParam("sid") int sid){
         System.out.println(sid);
         if (sid == 0 ){
-            return null;
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","请求错误");
+            return responseInfo;
         }else {
             Stracture oneStracture = stractureService.getOneStractureById(sid);
-            return oneStracture;
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","ok");
+            responseInfo.put("info","请求成功");
+            responseInfo.put("data",oneStracture);
+            return responseInfo;
         }
     }
-
-
 
 
     @GetMapping("/catalogue")
     @CrossOrigin(origins = "*")
-    public List<Catalogue> getCatalogue(){
+    public Map getCatalogue(){
 
         List<Catalogue> all_catalogue = catalogueService.getAll();
         System.out.println(all_catalogue);
 
-        return all_catalogue;
-    }
-
-    @CrossOrigin(origins = "*")
-    @PostMapping("/vue-admin-template/user/login")
-    public Map login() {
-//        {"code":20000,"data":{"token":"admin-token"}}
-        HashMap<String, Object> response = new HashMap<>();
-        HashMap<String, Object> responseData = new HashMap<>();
-        responseData.put("token","admin-token");
-        response.put("code",20000);
-        response.put("data",responseData);
-        return response;
-    }
-
-//    {"code":20000,"data":{"roles":["admin"],"introduction":"I am a super administrator","avatar":"https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif","name":"Super Admin"}}
-    @CrossOrigin(origins = "*")
-    @GetMapping("/info")
-    public Map info() {
-        String[] ar = new String[1];
-        ar[0] = "admin";
         HashMap<String, Object> responseInfo = new HashMap<>();
-        HashMap<String, Object> responseData = new HashMap<>();
-        responseData.put("roles",ar);
-        responseData.put("name","Super admin");
-        responseData.put("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         responseInfo.put("code",20000);
-        responseInfo.put("introduction","I am a super administrator");
-        responseInfo.put("data",responseData);
+        responseInfo.put("status","ok");
+        responseInfo.put("info","请求成功");
+        responseInfo.put("data",all_catalogue);
+
         return responseInfo;
     }
 
-
+    @PostMapping("/catalogueOne")
     @CrossOrigin(origins = "*")
-    @PostMapping("/vue-admin-template/user/logout")
-    public Map logout() {
-//      {"code":20000,"data":"success"}
-        HashMap<String, Object> response = new HashMap<>();
-        response.put("code",20000);
-        response.put("data","success");
-        return response;
+    public Map getCatalogueOne(@RequestParam("cid") int cid){
+
+        System.out.println(cid);
+        if (cid == 0 ){
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","请求错误");
+            return responseInfo;
+        }else {
+            Catalogue oneCatalogueById = catalogueService.getOneCatalogueById(cid);
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("info","请求成功");
+            responseInfo.put("data",oneCatalogueById);
+
+            return responseInfo;
+        }
     }
+
+
+    @PostMapping("/catalogueAdd")
+    @CrossOrigin(origins = "*")
+    public Map addcatalogue(Catalogue catalogue){
+        System.out.println(catalogue);
+
+        int addCatalogue_result = catalogueService.addCatalogue(catalogue);
+        if (addCatalogue_result == 1){
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","ok");
+            responseInfo.put("info","添加成功");
+            return responseInfo;
+        }else {
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","添加失败");
+            return responseInfo;
+        }
+
+    }
+
+    @PostMapping("/catalogueUp")
+    @CrossOrigin(origins = "*")
+    public Map upCatalogue(Catalogue catalogue){
+        System.out.println(catalogue);
+        if (catalogue.getCid() == 0){
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","缺少序列号");
+            return responseInfo;
+        }else {
+            int catalogueUp_result = catalogueService.upCatalogue(catalogue);
+            if (catalogueUp_result == 1){
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","ok");
+                responseInfo.put("info","修改成功");
+                return responseInfo;
+            }else {
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","error");
+                responseInfo.put("info","修改失败");
+                return responseInfo;
+            }
+        }
+    }
+
+    @PostMapping("/catalogueDel")
+    @CrossOrigin(origins = "*")
+    public Map delCatalogue(@RequestParam("cid") int cid){
+        System.out.println(cid);
+        if (cid == 0 ){
+            HashMap<String, Object> responseInfo = new HashMap<>();
+            responseInfo.put("code",20000);
+            responseInfo.put("status","error");
+            responseInfo.put("info","缺少序列号");
+            return responseInfo;
+        }else {
+            int del_res = catalogueService.delCatalogueById(cid);
+            if (del_res == 1){
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","ok");
+                responseInfo.put("info","删除成功");
+                return responseInfo;
+            }else {
+                HashMap<String, Object> responseInfo = new HashMap<>();
+                responseInfo.put("code",20000);
+                responseInfo.put("status","error");
+                responseInfo.put("info","删除失败");
+                return responseInfo;
+            }
+        }
+    }
+
 
 }

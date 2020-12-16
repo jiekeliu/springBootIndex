@@ -3,7 +3,6 @@ package com.jiekeliu.mapper;
 import com.jiekeliu.pojo.Catalogue;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 

@@ -6,4 +6,22 @@
     <select id="getAll" resultType="com.jiekeliu.pojo.Catalogue">
         select * from pageindex.catalogue
     </select>
+
+    <select id="getOneCatalogueById" parameterType="int" resultType="com.jiekeliu.pojo.Catalogue">
+        select * from pageindex.catalogue where cid=#{cid}
+    </select>
+
+    <insert id="addCatalogue" parameterType="com.jiekeliu.pojo.Catalogue">
+        INSERT INTO pageindex.catalogue (cname,curl,pid) VALUES (#{cname},#{curl},#{pid})
+    </insert>
+
+    <update id="upCatalogue" parameterType="com.jiekeliu.pojo.Catalogue">
+        update pageindex.catalogue set cname=#{cname},curl=#{curl},pid=#{pid} where cid=#{cid}
+    </update>
+
+    <delete id="delCatalogueById" parameterType="int">
+        delete from pageindex.catalogue where cid=#{cid}
+    </delete>
+
+
 </mapper>
