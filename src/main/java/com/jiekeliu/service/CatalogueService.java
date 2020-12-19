@@ -1,8 +1,7 @@
 package com.jiekeliu.service;
 
 import com.jiekeliu.pojo.Catalogue;
-
-import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: jiekeliu
@@ -11,17 +10,17 @@ import java.util.List;
  */
 public interface CatalogueService {
     //    查询所有数据
-    List<Catalogue> getAll();
+    Map getAll(int page, int limit, boolean sort);
 
     //    添加
-    int addCatalogue(Catalogue catalogue);
+    Map addCatalogue(Catalogue catalogue);
 
     //    删除
-    int delCatalogueById(int cid);
+    Map delCatalogueById(int cid);
 
     //    修改
-    int upCatalogue(Catalogue catalogue);
+    Map upCatalogue(Catalogue catalogue);
 
     //    根据id查询Catalogue
-    Catalogue getOneCatalogueById(int cid);
+    Map getOneCatalogueById(int cid);
 }

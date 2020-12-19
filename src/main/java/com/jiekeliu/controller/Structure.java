@@ -1,6 +1,5 @@
 package com.jiekeliu.controller;
 
-import com.jiekeliu.pojo.Catalogue;
 import com.jiekeliu.pojo.Stracture;
 import com.jiekeliu.service.CatalogueServiceImpl;
 import com.jiekeliu.service.StractureServiceImpl;
@@ -13,16 +12,12 @@ import java.util.Map;
 
 /**
  * @Auther: jiekeliu
- * @Date: 2020/12/6 0006 18:15
+ * @Date: 2020/12/19 0019 13:45
  * @Description:
  */
-
 @RequestMapping
 @RestController
-public class IndexData {
-
-    @Autowired
-    CatalogueServiceImpl catalogueService;
+public class Structure {
 
     @Autowired
     StractureServiceImpl stractureService;
@@ -142,124 +137,4 @@ public class IndexData {
             return responseInfo;
         }
     }
-
-
-    @GetMapping("/catalogue")
-    @CrossOrigin(origins = "*")
-    public Map getCatalogue(){
-
-        List<Catalogue> all_catalogue = catalogueService.getAll();
-        System.out.println(all_catalogue);
-
-        HashMap<String, Object> responseInfo = new HashMap<>();
-        responseInfo.put("code",20000);
-        responseInfo.put("status","ok");
-        responseInfo.put("info","请求成功");
-        responseInfo.put("data",all_catalogue);
-
-        return responseInfo;
-    }
-
-    @PostMapping("/catalogueOne")
-    @CrossOrigin(origins = "*")
-    public Map getCatalogueOne(@RequestParam("cid") int cid){
-
-        System.out.println(cid);
-        if (cid == 0 ){
-            HashMap<String, Object> responseInfo = new HashMap<>();
-            responseInfo.put("code",20000);
-            responseInfo.put("status","error");
-            responseInfo.put("info","请求错误");
-            return responseInfo;
-        }else {
-            Catalogue oneCatalogueById = catalogueService.getOneCatalogueById(cid);
-            HashMap<String, Object> responseInfo = new HashMap<>();
-            responseInfo.put("code",20000);
-            responseInfo.put("info","请求成功");
-            responseInfo.put("data",oneCatalogueById);
-
-            return responseInfo;
-        }
-    }
-
-
-    @PostMapping("/catalogueAdd")
-    @CrossOrigin(origins = "*")
-    public Map addcatalogue(Catalogue catalogue){
-        System.out.println(catalogue);
-
-        int addCatalogue_result = catalogueService.addCatalogue(catalogue);
-        if (addCatalogue_result == 1){
-            HashMap<String, Object> responseInfo = new HashMap<>();
-            responseInfo.put("code",20000);
-            responseInfo.put("status","ok");
-            responseInfo.put("info","添加成功");
-            return responseInfo;
-        }else {
-            HashMap<String, Object> responseInfo = new HashMap<>();
-            responseInfo.put("code",20000);
-            responseInfo.put("status","error");
-            responseInfo.put("info","添加失败");
-            return responseInfo;
-        }
-
-    }
-
-    @PostMapping("/catalogueUp")
-    @CrossOrigin(origins = "*")
-    public Map upCatalogue(Catalogue catalogue){
-        System.out.println(catalogue);
-        if (catalogue.getCid() == 0){
-            HashMap<String, Object> responseInfo = new HashMap<>();
-            responseInfo.put("code",20000);
-            responseInfo.put("status","error");
-            responseInfo.put("info","缺少序列号");
-            return responseInfo;
-        }else {
-            int catalogueUp_result = catalogueService.upCatalogue(catalogue);
-            if (catalogueUp_result == 1){
-                HashMap<String, Object> responseInfo = new HashMap<>();
-                responseInfo.put("code",20000);
-                responseInfo.put("status","ok");
-                responseInfo.put("info","修改成功");
-                return responseInfo;
-            }else {
-                HashMap<String, Object> responseInfo = new HashMap<>();
-                responseInfo.put("code",20000);
-                responseInfo.put("status","error");
-                responseInfo.put("info","修改失败");
-                return responseInfo;
-            }
-        }
-    }
-
-    @PostMapping("/catalogueDel")
-    @CrossOrigin(origins = "*")
-    public Map delCatalogue(@RequestParam("cid") int cid){
-        System.out.println(cid);
-        if (cid == 0 ){
-            HashMap<String, Object> responseInfo = new HashMap<>();
-            responseInfo.put("code",20000);
-            responseInfo.put("status","error");
-            responseInfo.put("info","缺少序列号");
-            return responseInfo;
-        }else {
-            int del_res = catalogueService.delCatalogueById(cid);
-            if (del_res == 1){
-                HashMap<String, Object> responseInfo = new HashMap<>();
-                responseInfo.put("code",20000);
-                responseInfo.put("status","ok");
-                responseInfo.put("info","删除成功");
-                return responseInfo;
-            }else {
-                HashMap<String, Object> responseInfo = new HashMap<>();
-                responseInfo.put("code",20000);
-                responseInfo.put("status","error");
-                responseInfo.put("info","删除失败");
-                return responseInfo;
-            }
-        }
-    }
-
-
 }

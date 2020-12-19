@@ -16,7 +16,10 @@ import java.util.List;
 @Repository
 public interface CatalogueMapper {
     //    查询所有数据
-    List<Catalogue> getAll();
+    List<Catalogue> getAll(int start, int end);
+
+    //    查询所有数据(倒序)
+    List<Catalogue> getAllDesc(int start, int end);
 
     //    添加
     int addCatalogue(Catalogue catalogue);
@@ -29,6 +32,10 @@ public interface CatalogueMapper {
 
     //    根据id查询Catalogue
     Catalogue getOneCatalogueById(int cid);
+
+
+    //    查询数据总量
+    int getCatalogueCount();
 
 
 }

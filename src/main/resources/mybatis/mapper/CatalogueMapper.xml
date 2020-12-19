@@ -4,7 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jiekeliu.mapper.CatalogueMapper">
     <select id="getAll" resultType="com.jiekeliu.pojo.Catalogue">
-        select * from pageindex.catalogue
+        select * from pageindex.catalogue order by cid asc limit #{start},#{end}
+    </select>
+
+    <select id="getAllDesc" resultType="com.jiekeliu.pojo.Catalogue">
+        select * from pageindex.catalogue order by cid desc limit #{start},#{end}
     </select>
 
     <select id="getOneCatalogueById" parameterType="int" resultType="com.jiekeliu.pojo.Catalogue">
@@ -23,5 +27,8 @@
         delete from pageindex.catalogue where cid=#{cid}
     </delete>
 
+    <select id="getCatalogueCount" resultType="int">
+        select count(*) from pageindex.catalogue
+    </select>
 
 </mapper>

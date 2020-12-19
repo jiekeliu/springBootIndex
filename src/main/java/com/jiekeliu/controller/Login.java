@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RequestMapping
 @RestController
-public class LoginPageData {
+public class Login {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/vue-admin-template/user/login")
