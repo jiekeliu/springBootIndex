@@ -36,7 +36,7 @@ public class CatalogueServiceImpl implements CatalogueService {
         int catalogueCount = catalogueMapper.getCatalogueCount();
 
         //判断页数是否超出
-        boolean expage = (catalogueCount/limit+1)>page?true:false;
+        boolean expage = (catalogueCount/limit+1)>=page?true:false;
 
         if (!expage){
             responseInfo.put("code",20000);
