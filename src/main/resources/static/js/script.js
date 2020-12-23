@@ -26,7 +26,7 @@ slides = [
   ];
 
 $.ajax({
-  url:"http://localhost:8080/mate?page=1&limit=30&sort=false",
+  url:"http://47.98.116.55:9600/mate?page=1&limit=30&sort=false",
   success:function(result){
     let items = [];
     for(i = 0,len=result.data.length; i < len; i++) {
