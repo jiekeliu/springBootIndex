@@ -29,7 +29,7 @@ public class MateController {
         sort: false //是否倒序 false=asc,ture=desc
         * */
     public Map getCatalogue(@RequestParam("page") int page, @RequestParam("limit") int limit, @RequestParam("sort") boolean sort){
-        Map cate_res = mateService.geDataByPage(1, 20, false);
+        Map cate_res = mateService.geDataByPage(page, limit, sort);
         return cate_res;
     }
 
