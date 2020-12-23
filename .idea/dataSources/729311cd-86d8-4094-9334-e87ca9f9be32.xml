@@ -734,52 +734,93 @@
 </ObjectGrants>
     </user>
     <table id="229" parent="4" name="catalogue"/>
-    <table id="230" parent="4" name="stracture"/>
-    <column id="231" parent="229" name="cid">
+    <table id="230" parent="4" name="mate"/>
+    <table id="231" parent="4" name="stracture"/>
+    <column id="232" parent="229" name="cid">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="232" parent="229" name="cname">
+    <column id="233" parent="229" name="cname">
       <Position>2</Position>
       <Comment>导航名称</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="233" parent="229" name="curl">
+    <column id="234" parent="229" name="curl">
       <Position>3</Position>
       <Comment>连接</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="234" parent="229" name="pid">
+    <column id="235" parent="229" name="pid">
       <Position>4</Position>
       <Comment>父导航</Comment>
       <DataType>int(11)|0s</DataType>
     </column>
-    <key id="235" parent="229" name="PRIMARY">
+    <key id="236" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>cid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="236" parent="230" name="sid">
+    <column id="237" parent="230" name="mid">
+      <Position>1</Position>
+      <DataType>int(3)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="238" parent="230" name="pid">
+      <Position>2</Position>
+      <DataType>int(3)|0s</DataType>
+    </column>
+    <column id="239" parent="230" name="title">
+      <Position>3</Position>
+      <Comment>标题</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="240" parent="230" name="url">
+      <Position>4</Position>
+      <Comment>连接</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="241" parent="230" name="subtitle">
+      <Position>5</Position>
+      <Comment>子标题</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="242" parent="230" name="description">
+      <Position>6</Position>
+      <Comment>描述</Comment>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="243" parent="230" name="image">
+      <Position>7</Position>
+      <Comment>图片地址</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <key id="244" parent="230" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="245" parent="231" name="sid">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="237" parent="230" name="ispage">
+    <column id="246" parent="231" name="ispage">
       <Position>2</Position>
       <DataType>int(1)|0s</DataType>
     </column>
-    <column id="238" parent="230" name="tag">
+    <column id="247" parent="231" name="tag">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="239" parent="230" name="list">
+    <column id="248" parent="231" name="list">
       <Position>4</Position>
       <DataType>text|0s</DataType>
     </column>
-    <key id="240" parent="230" name="PRIMARY">
+    <key id="249" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sid</ColNames>
       <Primary>1</Primary>

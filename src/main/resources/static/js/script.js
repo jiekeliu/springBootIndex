@@ -1,38 +1,41 @@
 // console.clear();
 
+currentIndex = 0;
+
 slides = [
 {
-  title: "欢迎",
-  subtitle: "Peru",
+  title: "欢迎来到我的世界",
+  url: "http://www.baidu.com",
+  subtitle: "我是Jesonker",
   description: "Adventure is never far away",
-  image:
-  "img/1.jpg" },
+  image: "img/1.jpg" },
 
 {
   title: "Chamonix",
+  url: "http://www.baidu.com",
   subtitle: "France",
   description: "Let your dreams come true",
-  image:
-  "img/2.jpg" },
+  image: "img/2.jpg" },
 
 {
   title: "Mimisa Rocks",
+  url: "http://www.baidu.com",
   subtitle: "Australia",
   description: "A piece of heaven",
-  image:
-  "img/3.jpg" },
+  image: "img/3.jpg" },
   ];
 
 $.ajax({
-  url:"http://47.98.116.55:9600/catalogue?page=1&limit=30&sort=false",
+  url:"http://localhost:8080/mate?page=1&limit=30&sort=false",
   success:function(result){
     let items = [];
     for(i = 0,len=result.data.length; i < len; i++) {
       let information = {
-        title: result.data[i].cname,
-        subtitle: "Peru",
-        description: "Adventure is never far away",
-        image:"img/"+i+".jpg"
+        title: result.data[i].title,
+        subtitle: result.data[i].subtitle,
+        description: result.data[i].description,
+        image:result.data[i].image,
+        url:result.data[i].url
       }
       items.push(information)
     }
@@ -89,12 +92,14 @@ const initialState = {
 
 const slidesReducer = (state, event) => {
   if (event.type === "NEXT") {
+    currentIndex = state.slideIndex;
     return {
       ...state,
       slideIndex: (state.slideIndex + 1) % slides.length };
 
   }
   if (event.type === "PREV") {
+    currentIndex = state.slideIndex;
     return {
       ...state,
       slideIndex:
@@ -109,7 +114,7 @@ function Slide({ slide, offset }) {
 
   return (
     React.createElement("div", {
-      onClick: () => {window.location.href="http://www.baidu.com"},
+      onClick: () => {changeUrl();},
       ref: ref,
       className: "slide",
       "data-active": active,
@@ -155,6 +160,13 @@ function App() {
 
 }
 
+
+function changeUrl(){
+ // console.log(slides);
+ // console.log(currentIndex);
+ // console.log(slides[currentIndex].url);
+  window.location.href=slides[currentIndex].url;
+}
 
 
 const elApp = document.getElementById("app");

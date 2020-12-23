@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiekeliu.mapper.MateMapper">
+    <select id="getDataAse" resultType="com.jiekeliu.pojo.Mate">
+        select * from pageindex.mate order by mid asc limit #{start},#{pageSize}
+    </select>
+
+    <select id="getDataDesc" resultType="com.jiekeliu.pojo.Mate">
+         select * from pageindex.mate order by mid desc limit #{start},#{pageSize}
+    </select>
+
+    <select id="getOneMateById" parameterType="int" resultType="com.jiekeliu.pojo.Mate">
+        select * from pageindex.mate where mid=#{mid}
+    </select>
+
+    <insert id="addMate" parameterType="com.jiekeliu.pojo.Mate">
+        INSERT INTO pageindex.mate (pid,title,url,subtitle,description,image) VALUES (#{pid},#{title},#{url},#{subtitle},#{description},#{image})
+    </insert>
+
+    <update id="upMate" parameterType="com.jiekeliu.pojo.Mate">
+        update pageindex.mate set pid=#{pid},title=#{title},url=#{url},subtitle=#{subtitle},description=#{description},image=#{image} where mid=#{mid}
+    </update>
+
+    <delete id="delMateById" parameterType="int">
+        delete from pageindex.mate where mid=#{mid}
+    </delete>
+
+    <select id="getMateCount" resultType="int">
+        select count(*) from pageindex.mate
+    </select>
+
+</mapper>
