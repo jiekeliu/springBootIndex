@@ -39,6 +39,7 @@ $.ajax({
       }
       items.push(information)
     }
+    slides= [];
     slides = items;
   }});
 
@@ -92,14 +93,14 @@ const initialState = {
 
 const slidesReducer = (state, event) => {
   if (event.type === "NEXT") {
-    currentIndex = state.slideIndex;
+    currentIndex = (state.slideIndex + 1) % slides.length;
     return {
       ...state,
       slideIndex: (state.slideIndex + 1) % slides.length };
 
   }
   if (event.type === "PREV") {
-    currentIndex = state.slideIndex;
+    currentIndex = state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1;
     return {
       ...state,
       slideIndex:
@@ -162,10 +163,11 @@ function App() {
 
 
 function changeUrl(){
+
  // console.log(slides);
  // console.log(currentIndex);
  // console.log(slides[currentIndex].url);
-  window.location.href=slides[currentIndex].url;
+ window.location.href=slides[currentIndex].url;
 }
 
 

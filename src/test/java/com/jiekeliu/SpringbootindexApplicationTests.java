@@ -8,6 +8,7 @@ class SpringbootindexApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }
