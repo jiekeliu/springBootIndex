@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiekeliu.mapper.ArticleMapper">
+
+    <select id="getAll" resultType="com.jiekeliu.pojo.Article">
+        select * from pageindex.article
+    </select>
+
+    <select id="getDataAse" resultType="com.jiekeliu.pojo.Article">
+        select * from pageindex.article order by id asc limit #{start},#{pageSize}
+    </select>
+
+    <select id="getDataDesc" resultType="com.jiekeliu.pojo.Article">
+         select * from pageindex.article order by id desc limit #{start},#{pageSize}
+    </select>
+
+    <select id="getArticleCount" resultType="int">
+        select count(*) from pageindex.article
+    </select>
+
+
+    <select id="getOneArticleById" parameterType="int" resultType="com.jiekeliu.pojo.Article">
+        select * from pageindex.article where id=#{id}
+    </select>
+
+    <insert id="addArticle" parameterType="com.jiekeliu.pojo.Article">
+        INSERT INTO pageindex.article (author, comment_disabled, content, content_short, display_time, image_uri, importance, pageviews, platforms, reviewer, status, timestamp, title, type, forecast)
+        VALUES (#{author}, #{comment_disabled}, #{content}, #{content_short}, #{display_time}, #{image_uri}, #{importance}, #{pageviews}, #{platforms}, #{reviewer}, #{status}, #{timestamp}, #{title}, #{type}, #{forecast})
+    </insert>
+
+    <update id="upArticle" parameterType="com.jiekeliu.pojo.Article">
+        update pageindex.article
+        set author=#{author},
+            comment_disabled=#{comment_disabled},
+            content=#{content},
+            content_short=#{content_short},
+            display_time=#{display_time},
+            image_uri=#{image_uri},
+            importance=#{importance},
+            pageviews=#{pageviews},
+            platforms=#{platforms},
+            reviewer=#{reviewer},
+            status=#{status},
+            timestamp=#{timestamp},
+            title=#{title},
+            type=#{type},
+            forecast=#{forecast} where id=#{id}
+    </update>
+
+    <delete id="delArticleById" parameterType="int">
+        delete from pageindex.article where id=#{id}
+    </delete>
+
+</mapper>

@@ -57,7 +57,7 @@
 }
 @media screen and (max-width:576px){
 	.c-nav{
-		background-color:rgba(176,204,243,0.8);
+		background-color:rgba(82, 85, 89, 0.8);
 		padding: 10px 0px 10px 0px;
 		opacity: 0.9;
 	}
