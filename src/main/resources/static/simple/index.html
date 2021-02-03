@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>家居网站首页</title>
+		<title>网站首页</title>
 		<link rel="stylesheet" href="simple/css/bootstrap4/css/bootstrap.css" />
 		<link rel="stylesheet" href="simple/css/furnishingsIndex.css"/>
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -17,14 +17,14 @@
 						<img  class="logo" src="simple/img/furnishingsIndex/myLogo.png" />
 					</div>
 					<div class="flexItem hiden">
-						<span>蚂蚁班</span>
+						<span>吾爱学习</span>
 					</div>
 					<div class="flexItem hiden" >
 						<img class="btnImg" onclick="showCa();" src="simple/img/furnishingsIndex/navBtn.png"/>
 					</div>
 					<div class="flexItem show">
 						<ul>
-							<li v-for="item in data" :key="item.mid">{{item.title}}</li>
+							<li v-for="item in data" :key="item.mid"> <a :href="item.url">{{item.title}}</a> </li>
 						</ul>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 				<!-- 产品类型 -->
 				<div class="type">
 					<div class="title">
-						<p>产品展示</p>
+						<p>作品展示</p>
 						<span>product</span>
 					</div>
 					<div class="name">
@@ -97,68 +97,31 @@
 						</div>
 						<div class="col-6 col-md-8">
 							<div class="content">
-								<h1>关于我们</h1>
+								<h1>关于网站</h1>
 								<p class="aboutHiden"> About As</p>
 								<div class="describe" id="describe">
 									AAAA公司于1999年创建于中国AA，这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系
 								</div>
 							</div>
-							<div class="abtouBtn">
-								<button>按钮</button>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- 新闻中心 -->
+			<!-- 文章中心 -->
 			<div class="c-news">
 				<div class="container">
 					<div class="title">
-						<p>新闻中心</p>
-						<span>news</span>
+						<p>文章评鉴</p>
+						<span>articles</span>
 					</div>
 					<div class="row">
-						<div class="col-12 col-lg-6">
+						<div class="col-12 col-lg-6" v-for="item in articles" :key="item.id">
 							<img src="simple/img/furnishingsIndex/newsImg1.gif">
 							<div class="content">
-								<p class="time">2017-09-15</p>
-								<p class="problem">实木家具到底有哪些？</p>
+								<p class="time">{{item.display_time}}</p>
+								<p class="problem">{{item.title}}</p>
 								<div class="describe">
-									<p>正在打算购买家具的朋友可能有这样的经历，面对琳琅满目的家具。面对
-										A品牌说实木家具，B品牌说纯实木家具，打啥都啊时代的嘎蛋黄酥的话还是丢会死啊好滴撒</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<img src="simple/img/furnishingsIndex/newsImg2.gif">
-							<div class="content">
-								<p class="time">2017-09-15</p>
-								<p class="problem">实木家具到底有哪些？</p>
-								<div class="describe">
-									<p>正在打算购买家具的朋友可能有这样的经历，面对琳琅满目的家具。面对
-										A品牌说实木家具，B品牌说纯实木家具，打啥都啊时代的嘎蛋黄酥的话还是丢会死啊好滴撒</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<img src="simple/img/furnishingsIndex/newsImg3.gif">
-							<div class="content">
-								<p class="time">2017-09-15</p>
-								<p class="problem">实木家具到底有哪些？</p>
-								<div class="describe">
-									<p>正在打算购买家具的朋友可能有这样的经历，面对琳琅满目的家具。面对
-										A品牌说实木家具，B品牌说纯实木家具，打啥都啊时代的嘎蛋黄酥的话还是丢会死啊好滴撒</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<img src="simple/img/furnishingsIndex/newsImg4.png">
-							<div class="content">
-								<p class="time">2017-09-15</p>
-								<p class="problem">实木家具到底有哪些？</p>
-								<div class="describe">
-									<p>正在打算购买家具的朋友可能有这样的经历，面对琳琅满目的家具。面对
-										A品牌说实木家具，B品牌说纯实木家具，打啥都啊时代的嘎蛋黄酥的话还是丢会死啊好滴撒</p>
+									<p>{{item.content_short}}</p>
 								</div>
 							</div>
 						</div>
@@ -169,12 +132,8 @@
 				<div class="container">
 					<div class="friendLink"><span class="title">友情链接:</span>/<span>AAAA</span>/<span>AAAA</span>/<span>AAAA</span>/<span>AAAA</span>/</div>
 					<div class="copyright">
-						<div class="copyrightApp" style="display: none;">
-							<p>Copyright © 千图网 沪ICP备10011451号-6</p>
-							<p>ICP证书: 沪B2-20180057</p>
-						</div>
 						<p class="copyrightWind">Copyright © 2013-现在 千图网 沪ICP备10011451号-6 ICP证书: 沪B2-20180057</p>
-						<p><span>制作人：CCF</span> <span class="phoneApp">电话：************</span> <span>UI来源：千图网</span></p>
+						<p><span>制作人：jiekeliu</span> </p>
 					</div>
 				</div>
 
@@ -260,19 +219,28 @@
 			el: '#app',
 			data: {
 				data: [],
+				articles: [],
 			},
 			created: function () {
 				// `this` 指向 vm 实例
-				console.log('a is:')
 				this.getCatalogueData()
+				this.getArticleData()
 			},
 			methods: {
 				getCatalogueData(){
 					$.ajax({
 						url:"http://47.98.116.55:9600/mate?page=1&limit=30&sort=false",
 						success:function(result){
-							console.log(result.data)
 							app.data = result.data
+						}});
+				},
+
+				getArticleData(){
+					$.ajax({
+						url:"http://47.98.116.55:9600/articlelist?page=1&limit=4&sort=true",
+						success:function(result){
+							app.articles = result.data.items
+							console.log(app.articles)
 						}});
 				},
 

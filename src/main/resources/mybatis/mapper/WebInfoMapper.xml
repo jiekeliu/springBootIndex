@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiekeliu.mapper.WebInfoMapper">
+
+    <select id="getData" resultType="com.jiekeliu.pojo.WebInfo">
+        select * from pageindex.web_info where wid = 1
+    </select>
+
+    <update id="upWebInfo" parameterType="com.jiekeliu.pojo.WebInfo">
+        update pageindex.web_info
+        set status=#{status},
+            web_icon_url=#{web_icon_url},
+            web_name=#{web_name},
+            web_title=#{web_title},
+            web_subtitle=#{web_subtitle},
+            web_bgimg_url=#{web_bgimg_url},
+            web_manager=#{web_manager},
+            web_describe=#{web_describe},
+            web_describe_img_url=#{ web_describe_img_url},
+            web_code=#{web_code},
+            article_bg_url=#{article_bg_url},
+            web_code=#{web_code},
+            web_connection=#{web_connection}
+        where wid=1
+    </update>
+
+</mapper>

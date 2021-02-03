@@ -19,5 +19,4 @@ public class RedirectIndex {
     public String indexRedirect(){
         return "/simple/index.html";
     }
-
 }
