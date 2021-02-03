@@ -14,17 +14,17 @@
 			<div class="c-nav">
 				<div class="container navFlex">
 					<div class="flexItem">
-						<img  class="logo" src="simple/img/furnishingsIndex/myLogo.png" />
+						<img  class="logo" :src="info.web_icon_url" />
 					</div>
 					<div class="flexItem hiden">
-						<span>吾爱学习</span>
+						<span>{{info.web_name}}</span>
 					</div>
 					<div class="flexItem hiden" >
 						<img class="btnImg" onclick="showCa();" src="simple/img/furnishingsIndex/navBtn.png"/>
 					</div>
 					<div class="flexItem show">
 						<ul>
-							<li v-for="item in data" :key="item.mid"> <a :href="item.url">{{item.title}}</a> </li>
+							<li v-for="item in data" :key="item.mid"> <a :href="item.url" style="text-decoration: none">{{item.title}}</a> </li>
 						</ul>
 					</div>
 				</div>
@@ -32,11 +32,11 @@
 			<!-- banner-->
 			<div class="c-banner">
 				<div>
-					<img src="simple/img/furnishingsIndex/furnishingsIndexBanner.jpg" class="img-responsive" />
+					<img :src="info.web_bgimg_url" class="img-responsive" />
 				</div>
 				<div class="describe">
-					<p class="one">千挑万选的材料 精琢细磨的生活</p>
-					<p class="two">匠心铸就品质 专业成就业绩</p>
+					<p class="one">{{info.web_title}}</p>
+					<p class="two">{{info.web_subtitle}}</p>
 				</div>
 			</div>
 			<!-- 产品展示 -->
@@ -44,15 +44,15 @@
 				<!-- 产品类型 -->
 				<div class="type">
 					<div class="title">
-						<p>作品展示</p>
-						<span>product</span>
+						<p>生活馆</p>
+						<span>live</span>
 					</div>
 					<div class="name">
-						<button onclick="showCa();console.log(716376137617)">床品</button>
-						<button>沙发</button>
-						<button>椅翼</button>
-						<button>衣柜</button>
-						<button>桌子</button>
+						<button>学习</button>
+						<button>工作</button>
+						<button>旅游</button>
+						<button>游戏</button>
+						<button>影视</button>
 					</div>
 				</div>
 				<!-- 产品图 -->
@@ -62,25 +62,25 @@
 							<div class="col-sm-6 col-lg-3">
 								<div class="content">
 									<img src="simple/img/furnishingsIndex/product1.gif" />
-									<p>电视柜</p>
+									<p>人际关系</p>
 								</div>
 							</div>
 							<div class="col-sm-6 col-lg-3">
 								<div class="content">
 									<img src="simple/img/furnishingsIndex/product2.gif" />
-									<p>樱桃木黑胡椒纯实木单人沙发</p>
+									<p>视屏收集</p>
 								</div>
 							</div>
 							<div class="col-sm-6 col-lg-3">
 								<div class="content">
 									<img src="simple/img/furnishingsIndex/product3.gif" />
-									<p>明扶手椅、黑胡椒纯实木</p>
+									<p>模糊记忆</p>
 								</div>
 							</div>
 							<div class="col-sm-6 col-lg-3">
 								<div class="content">
 									<img src="simple/img/furnishingsIndex/product4.gif" />
-									<p>樱桃木黑胡椒纯实木双人沙发</p>
+									<p>未来已来</p>
 								</div>
 							</div>
 						</div>
@@ -93,15 +93,13 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-6 col-md-4">
-							<img style="width: 100%;" src="simple/img/furnishingsIndex/aboutImg1.gif" />
+							<img style="width: 100%;" :src="info.web_describe_img_url" />
 						</div>
 						<div class="col-6 col-md-8">
 							<div class="content">
 								<h1>关于网站</h1>
 								<p class="aboutHiden"> About As</p>
-								<div class="describe" id="describe">
-									AAAA公司于1999年创建于中国AA，这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系这十多年来一直致力于实木家具的生产的销售，销售主要包括实木座椅/沙发系列卧室实木床柜系
-								</div>
+								<div class="describe" id="describe" v-html="info.web_describe"></div>
 							</div>
 						</div>
 					</div>
@@ -116,7 +114,7 @@
 					</div>
 					<div class="row">
 						<div class="col-12 col-lg-6" v-for="item in articles" :key="item.id">
-							<img src="simple/img/furnishingsIndex/newsImg1.gif">
+							<img :src="info.article_bg_url">
 							<div class="content">
 								<p class="time">{{item.display_time}}</p>
 								<p class="problem">{{item.title}}</p>
@@ -130,10 +128,10 @@
 			</div>
 			<div class="c-bottom">
 				<div class="container">
-					<div class="friendLink"><span class="title">友情链接:</span>/<span>AAAA</span>/<span>AAAA</span>/<span>AAAA</span>/<span>AAAA</span>/</div>
+					<div class="friendLink"><span class="title">网站热词:</span>/<span>生活</span>/<span>学习</span>/<span>技术</span>/<span>娱乐</span>/</div>
 					<div class="copyright">
-						<p class="copyrightWind">Copyright © 2013-现在 千图网 沪ICP备10011451号-6 ICP证书: 沪B2-20180057</p>
-						<p><span>制作人：jiekeliu</span> </p>
+						<p class="copyrightWind">{{info.web_code}}</p>
+						<p><span>制作人：{{info.web_manager}}</span> </p>
 					</div>
 				</div>
 
@@ -180,13 +178,8 @@
 			}
 			//关于我们模块内容溢出剪切
 			lineCut(aboutText,aboutEl);
-			//新闻模块循环剪切
-			for(var i =0;i<childLength;i++){
-				var newsEl = $(".c-news .content .describe").eq(i).get(0);
-				lineCut(newsArray[i],newsEl);
-			}
 		});
-		
+
 		$(document).ready(function(){
 			var aboutEl = document.getElementById('describe');
 			lineCut(aboutText,aboutEl);
@@ -198,7 +191,7 @@
 				lineCut(newstext,newsEl);
 			}
 		})
-		
+
 		//文本溢出显示为省略号
 		function lineCut(text,el){
 			var n = el.offsetHeight;
@@ -220,13 +213,26 @@
 			data: {
 				data: [],
 				articles: [],
+				info:[],
 			},
 			created: function () {
 				// `this` 指向 vm 实例
 				this.getCatalogueData()
 				this.getArticleData()
+				this.getInfoData()
 			},
 			methods: {
+				//网站数据
+				getInfoData(){
+					$.ajax({
+						url:"http://47.98.116.55:9600/webinfo",
+						success:function(result){
+							app.info = result.data.items
+							console.log(app.info)
+						}});
+				},
+
+				//导航数据
 				getCatalogueData(){
 					$.ajax({
 						url:"http://47.98.116.55:9600/mate?page=1&limit=30&sort=false",
@@ -234,13 +240,12 @@
 							app.data = result.data
 						}});
 				},
-
+				//文章
 				getArticleData(){
 					$.ajax({
 						url:"http://47.98.116.55:9600/articlelist?page=1&limit=4&sort=true",
 						success:function(result){
 							app.articles = result.data.items
-							console.log(app.articles)
 						}});
 				},
 
