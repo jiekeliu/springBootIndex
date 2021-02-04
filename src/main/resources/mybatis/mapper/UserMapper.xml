@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiekeliu.mapper.UserMapper">
+
+    <select id="getAll" resultType="com.jiekeliu.pojo.User">
+        select * from pageindex.user
+    </select>
+
+    <select id="getDataAse" resultType="com.jiekeliu.pojo.User">
+        select * from pageindex.user order by uid asc limit #{start},#{pageSize}
+    </select>
+
+    <select id="getDataDesc" resultType="com.jiekeliu.pojo.User">
+         select * from pageindex.user order by uid desc limit #{start},#{pageSize}
+    </select>
+
+    <select id="getUserCount" resultType="int">
+        select count(*) from pageindex.user
+    </select>
+
+
+    <select id="getOneUserById" parameterType="int" resultType="com.jiekeliu.pojo.User">
+        select * from pageindex.user where uid=#{uid}
+    </select>
+
+
+    <select id="getOneUserByName" parameterType="String" resultType="com.jiekeliu.pojo.User">
+        select * from pageindex.user where username=#{username}
+    </select>
+
+    <insert id="addUser" parameterType="com.jiekeliu.pojo.User">
+        INSERT INTO pageindex.user (username, password, roles, introduction, avatar)
+        VALUES (#{username}, #{password}, #{roles}, #{introduction}, #{avatar})
+    </insert>
+
+    <update id="upUser" parameterType="com.jiekeliu.pojo.User">
+        update pageindex.user
+        set  username=#{username},
+             password=#{password},
+             roles=#{roles},
+             introduction=#{introduction},
+             avatar=#{avatar}
+        where uid=#{uid}
+    </update>
+
+    <delete id="delUserById" parameterType="int">
+        delete from pageindex.user where uid=#{uid}
+    </delete>
+
+</mapper>

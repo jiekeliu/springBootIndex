@@ -1,5 +1,7 @@
 package com.jiekeliu.controller;
 
+import com.jiekeliu.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -14,17 +16,13 @@ import java.util.Map;
 @RequestMapping
 @RestController
 public class Login {
+    @Autowired
+    LoginService loginService;
 
     @CrossOrigin(origins = "*")
     @PostMapping("/vue-admin-template/user/login")
-    public Map login() {
-//        {"code":20000,"data":{"token":"admin-token"}}
-        HashMap<String, Object> response = new HashMap<>();
-        HashMap<String, Object> responseData = new HashMap<>();
-        responseData.put("token","admin-token");
-        response.put("code",20000);
-        response.put("data",responseData);
-        return response;
+    public Map login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        return loginService.checkUser(username, password);
     }
 
     //    {"code":20000,"data":{"roles":["admin"],"introduction":"I am a super administrator","avatar":"https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif","name":"Super Admin"}}
